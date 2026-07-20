@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluefield Academy</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── PALETTE ──────────────────────────────
+       #00baff  sky blue
+       #0059bc  royal blue
+       #ffa400  amber
+       #ffffff  white
+       #173753  navy dark
+    ─────────────────────────────────────────── */
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      color: #333;
+    }
+
+    /* ── TOPBAR ───────────────────────────── */
+    .topbar {
+      background-color: #173753;
+      color: rgba(255,255,255,0.65);
+      font-size: 13px;
+      padding: 8px 0;
+    }
+
+    /* ── NAVBAR ───────────────────────────── */
+    .navbar {
+      background-color: #0059bc;
+    }
+    .brand-logo {
+      background-color: #ffa400;
+      color: #173753;
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .nav-link {
+      color: rgba(255,255,255,0.85) !important;
+      font-weight: 500;
+    }
+    .nav-link:hover { color: #ffa400 !important; }
+    .btn-enroll {
+      background-color: #ffa400;
+      color: #173753 !important;
+      font-weight: 700 !important;
+      border-radius: 6px;
+      padding: 5px 16px !important;
+    }
+    .btn-enroll:hover { background-color: #e09200; }
+
+    /* ── HERO ─────────────────────────────── */
+    #hero {
+      background: linear-gradient(135deg, #173753, #0059bc);
+      padding: 90px 0 70px;
+    }
+    #hero h1 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+    }
+    #hero h1 span { color: #00baff; }
+    #hero p { color: rgba(255,255,255,0.70); font-size: 16px; }
+
+    /* ── STATS ────────────────────────────── */
+    #stats { background-color: #ffa400; padding: 36px 0; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #173753;
+      display: block;
+    }
+    .stat-lbl {
+      font-size: 13px;
+      color: rgba(0,0,0,0.60);
+      display: block;
+    }
+
+    /* ── SECTIONS ─────────────────────────── */
+    .section-pad { padding: 72px 0; }
+    .bg-sky-light { background-color: #e8f4ff; }
+
+    .section-tag {
+      display: inline-block;
+      background-color: #00baff;
+      color: #173753;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #173753;
+      margin-bottom: 8px;
+    }
+
+    /* ── PROGRAMME CARDS ──────────────────── */
+    .prog-card {
+      background: #fff;
+      border: 1px solid #c8dff5;
+      border-top: 4px solid #00baff;
+      border-radius: 10px;
+      padding: 26px 20px;
+      text-align: center;
+      height: 100%;
+    }
+    .prog-card .icon { font-size: 38px; margin-bottom: 10px; }
+    .prog-card h5 { font-weight: 700; color: #0059bc; margin-bottom: 8px; }
+    .prog-card p  { font-size: 14px; color: #666; margin: 0; }
+
+    /* ── FEATURES GRID ────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid #c8dff5;
+      border-radius: 10px;
+      padding: 24px 20px;
+    }
+    .feature-card .icon { font-size: 32px; margin-bottom: 10px; }
+    .feature-card h5 { font-weight: 700; color: #0059bc; margin-bottom: 6px; font-size: 15px; }
+    .feature-card p  { font-size: 13px; color: #666; margin: 0; }
+
+    /* ── CONTACT FORM ─────────────────────── */
+    .form-control {
+      border: 1px solid #b8ccdf;
+      border-radius: 7px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      padding: 10px 14px;
+    }
+    .form-control:focus {
+      border-color: #0059bc;
+      box-shadow: 0 0 0 3px rgba(0,89,188,0.12);
+      outline: none;
+    }
+    .form-label { font-weight: 600; font-size: 14px; margin-bottom: 5px; }
+
+    /* ── CTA STRIP ────────────────────────── */
+    #cta { background-color: #0059bc; padding: 70px 0; }
+
+    /* ── FOOTER ───────────────────────────── */
+    footer {
+      background-color: #173753;
+      padding: 40px 0 20px;
+    }
+    .footer-heading {
+      color: #ffa400;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .footer-links { list-style: none; padding: 0; margin: 0; }
+    .footer-links li { margin-bottom: 7px; font-size: 14px; color: rgba(255,255,255,0.50); }
+    .footer-links a  { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-links a:hover { color: #00baff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 30px;
+      padding-top: 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.30);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container d-flex justify-content-between flex-wrap gap-2">
+      <span>&#128205; Monrovia, Liberia</span>
+      <span>&#9990; +231 77 000 0000 &nbsp;|&nbsp; info@bluefieldacademy.edu.lr</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#">
+        <span class="brand-logo">BA</span>
+        Bluefield Academy
+      </a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#programmes">Programmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#why-us">Why Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link btn-enroll" href="#contact">Enroll Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="section-tag">Welcome</span>
+          <h1 class="mt-2">
+            Shaping Minds,<br />
+            <span>Building Futures</span>
+          </h1>
+          <p class="mt-3 mb-4">
+            A premier learning institution in Monrovia, Liberia committed to
+            academic excellence, character development, and community leadership.
+          </p>
+          <a href="#programmes" class="btn btn-warning text-dark fw-bold px-4 me-2">Our Programmes</a>
+          <a href="#contact" class="btn btn-outline-light fw-bold px-4">Contact Us</a>
+        </div>
+        <div class="col-lg-5 text-center d-none d-lg-block">
+          <div style="
+            width: 200px; height: 200px;
+            background: linear-gradient(135deg, #0059bc, #00baff);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 64px; font-weight: 700; color: #fff;
+            margin: 0 auto;
+            border: 4px solid rgba(255,255,255,0.15);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+          ">BA</div>
+          <div class="mt-3" style="color: #ffa400; font-weight: 700;">Est. 2009</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="container">
+      <div class="row text-center g-0">
+        <div class="col-6 col-md-3 py-3 border-end border-dark border-opacity-25">
+          <span class="stat-num">1,200+</span>
+          <span class="stat-lbl">Students Enrolled</span>
+        </div>
+        <div class="col-6 col-md-3 py-3 border-end border-dark border-opacity-25">
+          <span class="stat-num">80+</span>
+          <span class="stat-lbl">Qualified Teachers</span>
+        </div>
+        <div class="col-6 col-md-3 py-3 border-end border-dark border-opacity-25">
+          <span class="stat-num">15+</span>
+          <span class="stat-lbl">Years of Excellence</span>
+        </div>
+        <div class="col-6 col-md-3 py-3">
+          <span class="stat-num">95%</span>
+          <span class="stat-lbl">Pass Rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section-pad">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <!-- Image placeholder -->
+          <div style="
+            background: linear-gradient(135deg, #e8f4ff, #c5d9f0);
+            border: 2px dashed #c8dff5;
+            border-radius: 10px;
+            height: 260px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            color: #666; gap: 8px; text-align: center;
+          ">
+            <span style="font-size: 48px;">&#127979;</span>
+            <p style="margin:0; font-size:14px;">School Building Photo</p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <span class="section-tag">Who We Are</span>
+          <h2 class="section-title mt-2">About Bluefield Academy</h2>
+          <p class="text-muted">
+            Founded in 2009, Bluefield Academy has grown into one of Monrovia's
+            most respected schools. We offer quality education from nursery through
+            senior secondary level in a safe, nurturing environment.
+          </p>
+          <p class="text-muted">
+            Our mission is to develop well-rounded individuals who are academically
+            strong, morally grounded, and ready to lead in a changing world.
+          </p>
+          <ul class="list-unstyled mt-3">
+            <li class="mb-2" style="color:#555;">&#10003;&nbsp; Small class sizes for personal attention</li>
+            <li class="mb-2" style="color:#555;">&#10003;&nbsp; Experienced and certified teaching staff</li>
+            <li class="mb-2" style="color:#555;">&#10003;&nbsp; Modern classrooms and learning resources</li>
+            <li class="mb-2" style="color:#555;">&#10003;&nbsp; Active sports and extracurricular programmes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMMES -->
+  <section id="programmes" class="section-pad bg-sky-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag">What We Offer</span>
+        <h2 class="section-title mt-2">Our Programmes</h2>
+        <p class="text-muted">Quality education at every level</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="prog-card">
+            <div class="icon">&#128118;</div>
+            <h5>Nursery &amp; Pre-K</h5>
+            <p>Early childhood learning through play, creativity, and foundational skills.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="prog-card">
+            <div class="icon">&#128218;</div>
+            <h5>Primary School</h5>
+            <p>Grades 1–6 with a strong focus on literacy, numeracy, and critical thinking.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="prog-card">
+            <div class="icon">&#127891;</div>
+            <h5>Junior High</h5>
+            <p>Grades 7–9 preparing students for advanced academics and leadership.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="prog-card">
+            <div class="icon">&#127979;</div>
+            <h5>Senior Secondary</h5>
+            <p>Grades 10–12 with WAEC preparation and university entry guidance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why-us" class="section-pad">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag">Why Choose Us</span>
+        <h2 class="section-title mt-2">What Makes Us Different</h2>
+        <p class="text-muted">We go beyond textbooks</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">&#128218;</div>
+          <h5>Academic Excellence</h5>
+          <p>Consistently high WAEC scores and a 95% promotion rate year after year.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#129516;</div>
+          <h5>Qualified Teachers</h5>
+          <p>All our teachers are certified professionals with ongoing training.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#9917;</div>
+          <h5>Sports &amp; Activities</h5>
+          <p>Football, basketball, debate club, science club, and music programme.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#128101;</div>
+          <h5>Safe Environment</h5>
+          <p>A secure, clean campus where every child feels welcome and protected.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#128187;</div>
+          <h5>Tech &amp; Innovation</h5>
+          <p>Computer lab with internet access and an introduction to coding.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#129309;</div>
+          <h5>Community Focus</h5>
+          <p>We partner with parents and the community for holistic development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container text-center">
+      <h2 class="fw-bold text-white mb-3">Ready to Join Bluefield Academy?</h2>
+      <p class="text-white-50 mb-4">Give your child the best start. Enroll today.</p>
+      <a href="#contact" class="btn btn-warning text-dark fw-bold px-4 me-2">Enroll Now</a>
+      <a href="#about" class="btn btn-outline-light fw-bold px-4">Learn More</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-pad bg-sky-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title mt-2">Contact Us</h2>
+        <p class="text-muted">We'd love to hear from you</p>
+      </div>
+      <div class="row g-5 justify-content-center">
+
+        <!-- Info -->
+        <div class="col-md-4">
+          <div class="mb-4">
+            <p style="font-size:22px; margin-bottom:4px;">&#128205;</p>
+            <strong style="color:#173753;">Location</strong>
+            <p class="text-muted mb-0">12 Carey Street, Monrovia, Liberia</p>
+          </div>
+          <div class="mb-4">
+            <p style="font-size:22px; margin-bottom:4px;">&#9990;</p>
+            <strong style="color:#173753;">Phone</strong>
+            <p class="text-muted mb-0">+231 77 000 0000</p>
+          </div>
+          <div class="mb-4">
+            <p style="font-size:22px; margin-bottom:4px;">&#9993;</p>
+            <strong style="color:#173753;">Email</strong>
+            <p class="text-muted mb-0">info@bluefieldacademy.edu.lr</p>
+          </div>
+          <div>
+            <p style="font-size:22px; margin-bottom:4px;">&#128337;</p>
+            <strong style="color:#173753;">Office Hours</strong>
+            <p class="text-muted mb-0">Mon – Fri, 8:00 AM – 4:00 PM</p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="col-md-7">
+          <form action="#" method="get">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="form-label" for="parentName">Parent Name</label>
+                <input type="text" class="form-control" id="parentName" name="parentName" placeholder="Full name" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="studentName">Student Name</label>
+                <input type="text" class="form-control" id="studentName" name="studentName" placeholder="Student's name" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="+231 77 ..." />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="programme">Programme</label>
+                <select class="form-control" id="programme" name="programme">
+                  <option value="">-- Select --</option>
+                  <option>Nursery &amp; Pre-K</option>
+                  <option>Primary School</option>
+                  <option>Junior High</option>
+                  <option>Senior Secondary</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4"
+                  placeholder="Any additional information..."></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit"
+                  class="btn fw-bold w-100 py-2"
+                  style="background-color:#0059bc; color:#fff; border:none;">
+                  Submit Enquiry
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="brand-logo">BA</span>
+            <span class="fw-bold text-white fs-5">Bluefield Academy</span>
+          </div>
+          <p style="font-size:14px; color:rgba(255,255,255,0.45);">
+            Shaping minds and building futures in Monrovia, Liberia since 2009.
+          </p>
+        </div>
+        <div class="col-md-2">
+          <h6 class="footer-heading">Navigate</h6>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#programmes">Programmes</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h6 class="footer-heading">Programmes</h6>
+          <ul class="footer-links">
+            <li>Nursery &amp; Pre-K</li>
+            <li>Primary School</li>
+            <li>Junior High</li>
+            <li>Senior Secondary</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h6 class="footer-heading">Contact</h6>
+          <ul class="footer-links">
+            <li>&#128205; Monrovia, Liberia</li>
+            <li>&#9990; +231 77 000 0000</li>
+            <li>&#9993; info@bluefieldacademy.edu.lr</li>
+            <li>&#128337; Mon–Fri, 8:00AM – 4:00PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p>&copy; 2025 Bluefield Academy &nbsp;|&nbsp; Built with HTML &middot; CSS &middot; Bootstrap 5</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
